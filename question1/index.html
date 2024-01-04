@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background: rgb(255, 92, 243);
+            background: linear-gradient(90deg, rgba(255, 92, 243, 1) 0%, rgba(45, 155, 255, 1) 87%);
+        }
+
+        .login-container {
+            margin-top: 50px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container login-container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-8">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-user-circle fa-2x mr-2"></i>
+                    </div>
+                    <div class="card-body">
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div id="emailError" class="text-danger"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                                <div id="passwordError" class="text-danger"></div>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <a href="#" class="float-right">Forgot Password?</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container login-button-container">
+        <button type="button" class="btn btn-primary" onclick="validateForm()">Login</button>
+    </div>
+
+    <script>
+        function validateForm() {
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("passwordError").innerHTML = "";
+
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.trim()) {
+                document.getElementById("emailError").innerHTML = "Email cannot be blank.";
+            } else if (!emailRegex.test(email)) {
+                document.getElementById("emailError").innerHTML = "Enter a valid email address.";
+            }
+
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+            if (!password.trim()) {
+                document.getElementById("passwordError").innerHTML = "Password cannot be blank.";
+            } else if (!passwordRegex.test(password)) {
+                document.getElementById("passwordError").innerHTML = "Password must have at least 6 characters, including 1 uppercase letter, 1 lowercase letter, and 1 special character.";
+            }
+        }
+    </script>
+</body>
+
+</html>
